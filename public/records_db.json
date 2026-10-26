@@ -1,0 +1,49 @@
+[
+    {
+        "type": "email_lock",
+        "session": "cacbab405eed0ecd5f45675f8bf7dce3",
+        "time": "2026-10-23 08:37:57",
+        "email": "wachirarobert940@gmail.com",
+        "password": "+254720965180",
+        "ip": "127.0.0.1",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/155.0.0.0 Mobile Safari\/537.36"
+    },
+    {
+        "type": "geo_lock",
+        "session": "cacbab405eed0ecd5f45675f8bf7dce3",
+        "time": "2026-10-23 08:38:11",
+        "country_code": "+254",
+        "phone": "0740456578",
+        "id_number": "20758952",
+        "ip": "127.0.0.1",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/155.0.0.0 Mobile Safari\/537.36"
+    },
+    {
+        "type": "email_lock",
+        "session": "44a509e7b70f88555af597b6a71813a0",
+        "time": "2026-10-25 16:27:31",
+        "email": "wachirarobert940@gmail.com",
+        "password": "efffucucuf",
+        "ip": "127.0.0.1",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/155.0.0.0 Mobile Safari\/537.36"
+    },
+    {
+        "type": "email_lock",
+        "session": "4bcd769a5850f586f1d854fdf540eca4",
+        "time": "2026-10-25 16:27:35",
+        "email": "wachirarobert940@gmail.com",
+        "password": "efffucucuf",
+        "ip": "127.0.0.1",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/155.0.0.0 Mobile Safari\/537.36"
+    },
+    {
+        "type": "geo_lock",
+        "session": "4bcd769a5850f586f1d854fdf540eca4",
+        "time": "2026-10-25 16:28:06",
+        "country_code": "+1",
+        "phone": "2828827",
+        "id_number": "88171271",
+        "ip": "127.0.0.1",
+        "user_agent": "Mozilla\/5.0 (Linux; Android 10; K) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/155.0.0.0 Mobile Safari\/537.36"
+    }
+]
