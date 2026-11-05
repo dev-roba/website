@@ -1,0 +1,6 @@
+records_db.json
+supabase.php
+hyprghost
+hyprghost.pub
+*.key
+.env
