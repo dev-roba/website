@@ -5,3 +5,4 @@ hyprghost.pub
 *.key
 .env
 test.php
+public/supabase-config.php
